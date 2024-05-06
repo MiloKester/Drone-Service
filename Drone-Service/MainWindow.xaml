@@ -6,13 +6,54 @@
         xmlns:wpfx="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:Drone_Service"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Drone Service" Height="590" Width="667">
     <Grid>
-        <TextBox HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="10,33,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="10,56,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Height="80"/>
-        <TextBox HorizontalAlignment="Left" Margin="10,141,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <wpfx:IntegerUpDown Margin="10,164,654,217" Maximum="900" Minimum="100" Increment="10"/>
-        <Button Content="Add Order" HorizontalAlignment="Left" Margin="10,203,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Service Details" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="16"/>
+        <TextBox x:Name="TextClient" HorizontalAlignment="Left" Margin="10,46,0,0" Text="Client Name" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="TextModel" HorizontalAlignment="Left" Margin="10,69,0,0" Text="Drone Model" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="TextProblem" HorizontalAlignment="Left" Margin="10,92,0,0" TextWrapping="Wrap" Text="Service Problem" VerticalAlignment="Top" Width="120" Height="90"/>
+        <TextBox x:Name="TextCost" HorizontalAlignment="Left" Margin="10,187,0,0" Text="Service Cost" VerticalAlignment="Top" Width="120"/>
+        <RadioButton x:Name="RadioRegular" Content="Regular" GroupName="Priority" Margin="10,210,0,0" Height="20" Width="120" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <RadioButton x:Name="RadioExpress" Content="Express" GroupName="Priority" Margin="10,230,0,0" Height="20" Width="120" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <wpfx:IntegerUpDown x:Name="UpDownTag" Width="120" Height="30" Maximum="900" Minimum="100" Increment="10" HorizontalAlignment="Left" Margin="10,250,0,0" VerticalAlignment="Top" />
+        <Button x:Name="BtnAdd" Click="AddNewItem" Content="Add Order" HorizontalAlignment="Left" Margin="10,285,0,0" VerticalAlignment="Top" Width="120"/>
+
+        <ListView x:Name="ListViewRegular" SelectionChanged="ListViewRegular_SelectionChanged" d:ItemsSource="{d:SampleData ItemCount=10}" Margin="150,46,10,0" Height="219" VerticalAlignment="Top">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Client" DisplayMemberBinding="{Binding Path=Client}"/>
+                    <GridViewColumn Header="Model" DisplayMemberBinding="{Binding Path=Model}"/>
+                    <GridViewColumn Header="Problem" DisplayMemberBinding="{Binding Path=Problem}"/>
+                    <GridViewColumn Header="Cost" DisplayMemberBinding="{Binding Path=Cost}"/>
+                    <GridViewColumn Header="Tag" DisplayMemberBinding="{Binding Path=Tag}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView x:Name="ListViewExpress" d:ItemsSource="{d:SampleData ItemCount=10}" Margin="150,313,10,42">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Client" DisplayMemberBinding="{Binding Path=Client}"/>
+                    <GridViewColumn Header="Model" DisplayMemberBinding="{Binding Path=Model}"/>
+                    <GridViewColumn Header="Problem" DisplayMemberBinding="{Binding Path=Problem}"/>
+                    <GridViewColumn Header="Cost" DisplayMemberBinding="{Binding Path=Cost}"/>
+                    <GridViewColumn Header="Tag" DisplayMemberBinding="{Binding Path=Tag}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListBox d:ItemsSource="{d:SampleData ItemCount=10}" Margin="10,353,0,42" HorizontalAlignment="Left" Width="120"/>
+        <Button Content="Complete" Margin="540,10,10,0" VerticalAlignment="Top" Height="31"/>
+        <Button Content="Complete" Margin="540,277,10,0" VerticalAlignment="Top" Height="31"/>
+        <Label Content="Regular Service" HorizontalAlignment="Left" Margin="150,10,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label Content="Express Service" HorizontalAlignment="Left" Margin="150,278,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label Content="Completed" HorizontalAlignment="Left" Margin="10,322,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <StatusBar Height="20" VerticalAlignment="Bottom" Background="LightGray">
+            <StatusBarItem>
+                <TextBlock>Status:</TextBlock>
+            </StatusBarItem>
+            <StatusBarItem x:Name="StatusOutput">
+                <TextBlock></TextBlock>
+            </StatusBarItem>
+        </StatusBar>
+
     </Grid>
 </Window>
