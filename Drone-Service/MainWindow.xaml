@@ -9,40 +9,39 @@
         Title="Drone Service" Height="590" Width="667">
     <Grid>
         <Label Content="Service Details" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="16"/>
-        <TextBox x:Name="TextClient" HorizontalAlignment="Left" Margin="10,46,0,0" Text="Client Name" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="TextModel" HorizontalAlignment="Left" Margin="10,69,0,0" Text="Drone Model" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="TextProblem" HorizontalAlignment="Left" Margin="10,92,0,0" TextWrapping="Wrap" Text="Service Problem" VerticalAlignment="Top" Width="120" Height="90"/>
-        <TextBox x:Name="TextCost" HorizontalAlignment="Left" Margin="10,187,0,0" Text="Service Cost" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="TextClient" HorizontalAlignment="Left" Margin="10,46,0,0" Text="Client Name" VerticalAlignment="Top" Width="120" Foreground="#FF9E9E9E" GotFocus="TextClient_GotFocus"/>
+        <TextBox x:Name="TextModel" HorizontalAlignment="Left" Margin="10,69,0,0" Text="Drone Model" VerticalAlignment="Top" Width="120" Foreground="#FF9E9E9E" GotFocus="TextModel_GotFocus"/>
+        <TextBox x:Name="TextProblem" HorizontalAlignment="Left" Margin="10,92,0,0" TextWrapping="Wrap" Text="Service Problem" VerticalAlignment="Top" Width="120" Height="90" Foreground="#FF9E9E9E" GotFocus="TextProblem_GotFocus"/>
+        <TextBox x:Name="TextCost" HorizontalAlignment="Left" Margin="10,187,0,0" Text="Service Cost" VerticalAlignment="Top" Width="120" Foreground="#FF9E9E9E" GotFocus="TextCost_GotFocus"/>
         <RadioButton x:Name="RadioRegular" Content="Regular" GroupName="Priority" Margin="10,210,0,0" Height="20" Width="120" VerticalAlignment="Top" HorizontalAlignment="Left"/>
         <RadioButton x:Name="RadioExpress" Content="Express" GroupName="Priority" Margin="10,230,0,0" Height="20" Width="120" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-        <wpfx:IntegerUpDown x:Name="UpDownTag" Width="120" Height="30" Maximum="900" Minimum="100" Increment="10" HorizontalAlignment="Left" Margin="10,250,0,0" VerticalAlignment="Top" />
+        <wpfx:IntegerUpDown x:Name="UpDownTag" Text="100" Width="120" Height="30" Maximum="900" Minimum="100" Increment="10" HorizontalAlignment="Left" Margin="10,250,0,0" VerticalAlignment="Top" AllowTextInput="False"/>
         <Button x:Name="BtnAdd" Click="AddNewItem" Content="Add Order" HorizontalAlignment="Left" Margin="10,285,0,0" VerticalAlignment="Top" Width="120"/>
-
         <ListView x:Name="ListViewRegular" SelectionChanged="ListViewRegular_SelectionChanged" d:ItemsSource="{d:SampleData ItemCount=10}" Margin="150,46,10,0" Height="219" VerticalAlignment="Top">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Client" DisplayMemberBinding="{Binding Path=Client}"/>
-                    <GridViewColumn Header="Model" DisplayMemberBinding="{Binding Path=Model}"/>
-                    <GridViewColumn Header="Problem" DisplayMemberBinding="{Binding Path=Problem}"/>
-                    <GridViewColumn Header="Cost" DisplayMemberBinding="{Binding Path=Cost}"/>
-                    <GridViewColumn Header="Tag" DisplayMemberBinding="{Binding Path=Tag}"/>
+                    <GridViewColumn Header="Client" Width="100" DisplayMemberBinding="{Binding Path=Client}"/>
+                    <GridViewColumn Header="Model" Width="80" DisplayMemberBinding="{Binding Path=Model}"/>
+                    <GridViewColumn Header="Problem" Width="200" DisplayMemberBinding="{Binding Path=Problem}"/>
+                    <GridViewColumn Header="Cost" Width="60" DisplayMemberBinding="{Binding Path=Cost}"/>
+                    <GridViewColumn Header="Tag" Width="40" DisplayMemberBinding="{Binding Path=Tag}"/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <ListView x:Name="ListViewExpress" d:ItemsSource="{d:SampleData ItemCount=10}" Margin="150,313,10,42">
+        <ListView x:Name="ListViewExpress" d:ItemsSource="{d:SampleData ItemCount=10}" Margin="150,313,10,42" SelectionChanged="ListViewExpress_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Client" DisplayMemberBinding="{Binding Path=Client}"/>
-                    <GridViewColumn Header="Model" DisplayMemberBinding="{Binding Path=Model}"/>
-                    <GridViewColumn Header="Problem" DisplayMemberBinding="{Binding Path=Problem}"/>
-                    <GridViewColumn Header="Cost" DisplayMemberBinding="{Binding Path=Cost}"/>
-                    <GridViewColumn Header="Tag" DisplayMemberBinding="{Binding Path=Tag}"/>
+                    <GridViewColumn Header="Client" Width="100" DisplayMemberBinding="{Binding Path=Client}"/>
+                    <GridViewColumn Header="Model" Width="80" DisplayMemberBinding="{Binding Path=Model}"/>
+                    <GridViewColumn Header="Problem" Width="200" DisplayMemberBinding="{Binding Path=Problem}"/>
+                    <GridViewColumn Header="Cost" Width="60" DisplayMemberBinding="{Binding Path=Cost}"/>
+                    <GridViewColumn Header="Tag" Width="40" DisplayMemberBinding="{Binding Path=Tag}"/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <ListBox d:ItemsSource="{d:SampleData ItemCount=10}" Margin="10,353,0,42" HorizontalAlignment="Left" Width="120"/>
-        <Button Content="Complete" Margin="540,10,10,0" VerticalAlignment="Top" Height="31"/>
-        <Button Content="Complete" Margin="540,277,10,0" VerticalAlignment="Top" Height="31"/>
+        <ListBox x:Name="ListBoxFinished" d:ItemsSource="{d:SampleData ItemCount=10}" Margin="10,353,0,42" HorizontalAlignment="Left" Width="120" MouseDoubleClick="ListBoxFinished_MouseDoubleClick"/>
+        <Button x:Name="BtnCompleteRegular" Content="Complete" Margin="540,10,10,0" VerticalAlignment="Top" Height="31" Click="CompleteRegular_Click"/>
+        <Button x:Name="BtnCompleteExpress" Content="Complete" Margin="540,277,10,0" VerticalAlignment="Top" Height="31" Click="CompleteExpress_Click"/>
         <Label Content="Regular Service" HorizontalAlignment="Left" Margin="150,10,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label Content="Express Service" HorizontalAlignment="Left" Margin="150,278,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label Content="Completed" HorizontalAlignment="Left" Margin="10,322,0,0" VerticalAlignment="Top" FontSize="16"/>

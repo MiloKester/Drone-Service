@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xceed.Wpf.Toolkit;
+﻿using System.Globalization;
 
 namespace Drone_Service
 {
-    // 6.1	Create a separate class file to hold the data items of the Drone.
-    // Use separate getter and setter methods, ensure the attributes are private and the accessor methods are public.
+    // 6.1	Create a separate class file to hold the data items of the Drone. Use separate getter and setter methods, ensure the attributes are private and the accessor methods are public.
     // ??? Add a display method that returns a string for Client Name and Service Cost.
-    // Add suitable code to the Client Name and Service Problem accessor methods so the data is formatted as Title case or Sentence case.
-    // Save the class as “Drone.cs”.
+    // Add suitable code to the Client Name and Service Problem accessor methods so the data is formatted as Title case or Sentence case. Save the class as “Drone.cs”.
 
     internal class Drone
     {
@@ -55,7 +47,7 @@ namespace Drone_Service
 
         public void SetProblem(string newProblem)
         {
-            problem = myTI.ToTitleCase(newProblem); // if you want sentence case, you need to use regex and do it manually :(
+            problem = myTI.ToTitleCase(newProblem); // sentence case would be annoying
         }
 
         public double GetCost()
