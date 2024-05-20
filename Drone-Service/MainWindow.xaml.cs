@@ -5,7 +5,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 
 // Milo Kester 30063179
-// 2024-05-XX
+// 2024-05-20
 // Drone Service
 // AT3 - Application to log drones for service and repair
 
@@ -309,5 +309,3 @@ namespace Drone_Service
         #endregion
     }
 }
-
-// reset status text on add button press
